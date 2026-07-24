@@ -1,0 +1,24 @@
+{
+  "name": "yutoigarashi-skills",
+  "owner": {
+    "name": "yutoigarashi-stack"
+  },
+  "description": "Cross-compatible Agent Skills for Codex and Claude Code.",
+  "plugins": [
+    {
+      "name": "anki-workflows",
+      "source": "./plugins/anki-workflows",
+      "description": "Add reviewed, non-duplicate Anki cards directly or from macOS Reminders.",
+      "version": "0.1.0",
+      "author": {
+        "name": "yutoigarashi-stack"
+      },
+      "category": "Productivity",
+      "tags": [
+        "anki",
+        "ankiconnect",
+        "reminders"
+      ]
+    }
+  ]
+}

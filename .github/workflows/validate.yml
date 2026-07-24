@@ -1,0 +1,46 @@
+name: Validate plugins
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  codex:
+    name: Codex
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Codex CLI
+        run: npm install --global @openai/codex@0.145.0
+      - name: Validate with Codex
+        env:
+          CODEX_HOME: ${{ runner.temp }}/codex-home
+        run: |
+          mkdir -p "$CODEX_HOME"
+          codex plugin marketplace add "$GITHUB_WORKSPACE"
+          codex plugin add anki-workflows@yutoigarashi-skills
+
+  claude-code:
+    name: Claude Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Claude Code
+        run: npm install --global @anthropic-ai/claude-code@2.1.218
+      - name: Validate with Claude Code
+        run: claude plugin validate .

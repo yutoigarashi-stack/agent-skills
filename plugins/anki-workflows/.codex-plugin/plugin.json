@@ -1,0 +1,34 @@
+{
+  "name": "anki-workflows",
+  "version": "0.1.0",
+  "description": "Add reviewed, non-duplicate Anki cards directly or from macOS Reminders.",
+  "author": {
+    "name": "yutoigarashi-stack",
+    "url": "https://github.com/yutoigarashi-stack"
+  },
+  "homepage": "https://github.com/yutoigarashi-stack/agent-skills",
+  "repository": "https://github.com/yutoigarashi-stack/agent-skills",
+  "keywords": [
+    "anki",
+    "ankiconnect",
+    "reminders",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Anki Workflows",
+    "shortDescription": "Add reviewed cards to Anki from prompts or Reminders.",
+    "longDescription": "Inspect a local Anki collection, add non-duplicate cards through AnkiConnect, sync them, and optionally process learning notes from macOS Reminders.",
+    "developerName": "yutoigarashi-stack",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/yutoigarashi-stack/agent-skills",
+    "defaultPrompt": [
+      "Add these cards to my existing Anki setup without duplicates, then sync.",
+      "Review my pending language-learning Reminders, add the useful cards to Anki, and sync."
+    ]
+  }
+}
