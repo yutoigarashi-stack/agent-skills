@@ -19,6 +19,21 @@
         "ankiconnect",
         "reminders"
       ]
+    },
+    {
+      "name": "git-workflows",
+      "source": "./plugins/git-workflows",
+      "description": "Safely update Git branches without losing unfinished local work.",
+      "version": "0.1.0",
+      "author": {
+        "name": "yutoigarashi-stack"
+      },
+      "category": "Developer Tools",
+      "tags": [
+        "git",
+        "stash",
+        "pull"
+      ]
     }
   ]
 }

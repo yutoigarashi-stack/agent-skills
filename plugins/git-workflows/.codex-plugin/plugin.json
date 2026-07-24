@@ -1,0 +1,34 @@
+{
+  "name": "git-workflows",
+  "version": "0.1.0",
+  "description": "Safely update Git branches without losing unfinished local work.",
+  "author": {
+    "name": "yutoigarashi-stack",
+    "url": "https://github.com/yutoigarashi-stack"
+  },
+  "homepage": "https://github.com/yutoigarashi-stack/agent-skills",
+  "repository": "https://github.com/yutoigarashi-stack/agent-skills",
+  "keywords": [
+    "git",
+    "stash",
+    "pull",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Git Workflows",
+    "shortDescription": "Update branches while preserving local work.",
+    "longDescription": "Safely stash tracked and untracked changes, pull with fast-forward-only semantics, and restore the original staged and unstaged state.",
+    "developerName": "yutoigarashi-stack",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/yutoigarashi-stack/agent-skills",
+    "defaultPrompt": [
+      "Pull the current branch without losing my local changes.",
+      "Stash my unfinished work, pull safely, and restore it."
+    ]
+  }
+}

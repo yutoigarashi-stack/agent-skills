@@ -1,0 +1,4 @@
+interface:
+  display_name: "安全な Git Pull"
+  short_description: "変更とステージ状態を保って安全に git pull を実行"
+  default_prompt: "Use $git-pull-with-stash to update the current branch without losing my local changes."

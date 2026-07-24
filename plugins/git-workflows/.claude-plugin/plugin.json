@@ -1,0 +1,16 @@
+{
+  "name": "git-workflows",
+  "description": "Safely update Git branches without losing unfinished local work.",
+  "version": "0.1.0",
+  "author": {
+    "name": "yutoigarashi-stack"
+  },
+  "homepage": "https://github.com/yutoigarashi-stack/agent-skills",
+  "repository": "https://github.com/yutoigarashi-stack/agent-skills",
+  "keywords": [
+    "git",
+    "stash",
+    "pull",
+    "workflow"
+  ]
+}
