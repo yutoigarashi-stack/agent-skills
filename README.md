@@ -33,6 +33,11 @@ claude plugin install git-workflows@yutoigarashi-skills
 
 インストールまたは更新後は、新しいセッションでskillを利用してください。
 
+## Versioning
+
+Claude Code用manifestではversionを省略し、Gitのcommit SHAによる更新検知を利用する。
+Codex用manifestのversionはキャッシュ更新の判定に使われるため、pluginの内容を変更するたびに更新する。
+
 ## Security
 
 このリポジトリにはAnkiのカード内容、note ID、deck名、Reminderの内容、認証情報を保存しません。

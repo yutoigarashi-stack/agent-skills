@@ -1,7 +1,6 @@
 {
   "name": "anki-workflows",
   "description": "Add reviewed, non-duplicate Anki cards directly or from macOS Reminders.",
-  "version": "0.1.0",
   "author": {
     "name": "yutoigarashi-stack"
   },
