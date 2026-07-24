@@ -6,7 +6,7 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 
 ### anki-workflows
 
-- `anki-add-cards`: AnkiConnectで既存構成を確認し、重複を避けて任意言語・任意分野のカードを追加して同期する
+- `anki-add-cards`: AnkiConnectで既存構成とカードスタイルを確認し、重複を避けて任意言語・任意分野のカードを追加・更新・同期する
 - `reminders-to-anki`: `reminders-cli`の未完了項目をレビューし、学習用の内容をAnkiへ追加・同期してからReminderを完了する
 
 ### git-workflows

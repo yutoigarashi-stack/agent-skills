@@ -8,7 +8,7 @@
     {
       "name": "anki-workflows",
       "source": "./plugins/anki-workflows",
-      "description": "Add reviewed, non-duplicate Anki cards directly or from macOS Reminders.",
+      "description": "Add, review, and update non-duplicate Anki cards directly or from macOS Reminders.",
       "author": {
         "name": "yutoigarashi-stack"
       },
