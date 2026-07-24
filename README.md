@@ -1,6 +1,6 @@
 # agent-skills
 
-CodexとClaude Codeで共用するAgent Skillsのprivate marketplaceです。
+CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 
 ## Plugins
 
@@ -10,8 +10,6 @@ CodexとClaude Codeで共用するAgent Skillsのprivate marketplaceです。
 - `reminders-to-anki`: `reminders-cli`の未完了項目をレビューし、学習用の内容をAnkiへ追加・同期してからReminderを完了する
 
 ## Install
-
-このリポジトリへのアクセス権と、GitHubを利用するためのGit認証が必要です。
 
 ### Codex
 
