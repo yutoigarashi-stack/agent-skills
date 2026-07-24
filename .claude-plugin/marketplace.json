@@ -9,7 +9,6 @@
       "name": "anki-workflows",
       "source": "./plugins/anki-workflows",
       "description": "Add reviewed, non-duplicate Anki cards directly or from macOS Reminders.",
-      "version": "0.1.0",
       "author": {
         "name": "yutoigarashi-stack"
       },
@@ -24,7 +23,6 @@
       "name": "git-workflows",
       "source": "./plugins/git-workflows",
       "description": "Safely update Git branches without losing unfinished local work.",
-      "version": "0.1.0",
       "author": {
         "name": "yutoigarashi-stack"
       },

@@ -1,7 +1,6 @@
 {
   "name": "git-workflows",
   "description": "Safely update Git branches without losing unfinished local work.",
-  "version": "0.1.0",
   "author": {
     "name": "yutoigarashi-stack"
   },
