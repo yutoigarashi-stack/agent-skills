@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anki カード追加"
+  short_description: "AnkiConnect で任意言語のカードを安全に追加"
+  default_prompt: "Use $anki-add-cards to inspect my Anki setup and add these cards without duplicates."

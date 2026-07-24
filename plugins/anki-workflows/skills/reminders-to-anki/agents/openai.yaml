@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reminders → Anki"
+  short_description: "reminders-cli の学習メモをレビューして Anki に追加"
+  default_prompt: "Use $reminders-to-anki to review pending language-learning reminders, add the right cards to Anki, sync, and complete the reminders."
