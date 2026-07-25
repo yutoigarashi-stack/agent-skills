@@ -36,6 +36,10 @@ Use `reminders-cli` to find pending learning notes and the bundled
    - Correct spelling, capitalization, grammar, and unnatural phrasing.
    - Preserve the original meaning and degree. Do not silently turn
      `a little harder` into `harder`, for example.
+   - When an attachment reminder has a generic title and its notes name one or
+     more words or phrases, treat those named items as the learning targets.
+     For English notes, put them in the standard `English` note type's `Target`
+     field so the answer side identifies what is being learned.
    - Distinguish close alternatives when the reminder calls them out.
    - Prefer one corrected sentence plus separate reusable expressions when that
      matches nearby Anki cards.
@@ -43,9 +47,12 @@ Use `reminders-cli` to find pending learning notes and the bundled
    - Ask the user when a correction or intended meaning remains ambiguous.
 4. Inspect Anki using `anki-add-cards`.
    - Match the deck, note type, fields, HTML style, and tags of related cards.
+   - Use the standard `English` note type for self-authored English cards. Find
+     imported decks at runtime and do not use them as style references.
    - Search every proposed primary field for duplicates.
    - Use `canAddNotes` before a batch insertion.
-   - Do not hardcode a language, deck, note type, or field name.
+   - Outside the standard English convention, do not hardcode a language,
+     deck, note type, or field name.
 5. Apply the reviewed changes.
    - Add new notes with duplicate prevention enabled.
    - Update an existing note only when the reminder explicitly requests a

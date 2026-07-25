@@ -1,7 +1,7 @@
 {
   "name": "anki-workflows",
-  "version": "0.2.0",
-  "description": "Add, review, and update non-duplicate Anki cards directly or from macOS Reminders.",
+  "version": "0.3.0",
+  "description": "Add, review, standardize, and migrate non-duplicate Anki cards directly or from macOS Reminders.",
   "author": {
     "name": "yutoigarashi-stack",
     "url": "https://github.com/yutoigarashi-stack"
@@ -17,8 +17,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Anki Workflows",
-    "shortDescription": "Add or update reviewed Anki cards from prompts or Reminders.",
-    "longDescription": "Inspect a local Anki collection, apply established card styles, add or update non-duplicate cards through AnkiConnect, sync them, and optionally process learning notes from macOS Reminders.",
+    "shortDescription": "Add, migrate, or update reviewed Anki cards from prompts or Reminders.",
+    "longDescription": "Inspect a local Anki collection, use a standard English note type and card-length rules, add, migrate, or update non-duplicate cards through AnkiConnect, sync them, and optionally process learning notes from macOS Reminders.",
     "developerName": "yutoigarashi-stack",
     "category": "Productivity",
     "capabilities": [
@@ -29,6 +29,7 @@
     "defaultPrompt": [
       "Add or update these cards in my existing Anki setup without duplicates, then sync.",
       "Review my English-learning cards for consistent prompts, punctuation, examples, and vocabulary supplements.",
+      "Migrate my self-authored English cards to the standard English note type without losing review history.",
       "Review my pending language-learning Reminders, add the useful cards to Anki, and sync."
     ]
   }
