@@ -102,9 +102,10 @@ conflicting user preference:
 - Prefer a short, natural example sentence of 7–15 words with clear logic.
   Review sentences over 18 words for splitting; keep a longer sentence only
   when its full structure is the intended target.
-- Match example-sentence difficulty to the target item. For exam-level
-  vocabulary such as Eiken Grade 1, write sentences whose register and
-  collocations fit that level instead of simplifying the surrounding context.
+- Match example-sentence difficulty to the target item. For advanced
+  vocabulary such as Eiken Grade 1 or CEFR C1 and above, write sentences whose
+  register and collocations fit that level instead of simplifying the
+  surrounding context.
 - Card conversational expressions as complete practical sentences the user
   could actually say, not as isolated words or phrase fragments. Keep the
   full sentence in `Answer` and put the reusable fragment in `Target`.
