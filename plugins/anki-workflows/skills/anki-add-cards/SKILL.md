@@ -128,6 +128,13 @@ conflicting user preference:
 - Before appending a supplement, check the existing answer and supplements for
   the same explanation. Do not add a duplicate even when the wording differs.
 
+## Italian-learning card style
+
+- Unless the user states a different proficiency, assume the learner is at
+  CEFR A (A1–A2) for Italian-learning notes. Keep prompts, explanations, and
+  examples appropriate to that basic-user range, and do not display the level
+  on the card unless the user explicitly asks for it.
+
 ## Migrate existing English notes
 
 Migrate only when the user authorizes changing existing notes.
