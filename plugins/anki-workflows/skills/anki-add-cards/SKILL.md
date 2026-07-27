@@ -1,6 +1,6 @@
 ---
 name: anki-add-cards
-description: Inspect a local Anki collection and add, review, update, standardize, or migrate notes through AnkiConnect without losing review history. Use when the user asks to create, register, append, proofread, correct, revise, restyle, or migrate Anki cards; mentions AnkiConnect; wants self-authored English cards to use the standard English note type and phrase-length rules; or wants notes to match an existing deck, note type, fields, formatting, and tags without duplicates.
+description: Inspect a local Anki collection and add, review, update, standardize, or migrate notes through AnkiConnect without losing review history. Use when the user asks to create, register, append, proofread, correct, revise, restyle, or migrate Anki cards; mentions AnkiConnect; wants self-authored English, Italian, or Portuguese cards to use their standard note types; or wants notes to match an existing deck, note type, fields, formatting, and tags without duplicates.
 ---
 
 # Manage Anki cards
@@ -82,6 +82,33 @@ obtain authorization before creating or changing the note type.
 Keep layout HTML and colors in the card template rather than field values.
 Use only minimal semantic HTML such as `<b>` and `<br>` inside fields.
 
+## Standard Italian and Portuguese note types
+
+Use the `Italian` and `Portuguese` note types for self-authored notes in those
+languages unless the user explicitly chooses another type. Do not migrate
+imported decks to them.
+
+Require both note types to expose exactly the same fields, in the same order,
+as the standard `English` note type:
+
+- Put the Japanese recall cue in `Prompt`.
+- Put the complete target-language answer in `Answer`.
+- Put the reusable word, phrase, or construction in `Target`.
+- Put IPA or other pronunciation information in `Pronunciation`.
+- Put concise meaning, grammar, usage, contrast, and context in `Note`.
+- Put plain target-language text for automatic TTS in `Speech`.
+- Put an Anki audio reference in `Audio` when stored audio is used.
+
+Match the standard `English` layout and conditional `Speech` and `Audio`
+sections. Configure `Speech` TTS for the target language rather than English;
+use Italian TTS for `Italian` and Brazilian Portuguese TTS for `Portuguese`
+unless the user requests a different Portuguese variety. Leave `Speech` empty
+when stored audio is used or automatic speech is not wanted.
+
+Before adding notes, require `modelFieldNames` to return the seven standard
+fields in the exact order above. If a standard type is missing or incompatible,
+report the mismatch and obtain authorization before creating or changing it.
+
 ## English-learning card style
 
 Apply these rules to English-learning notes unless nearby cards establish a
@@ -132,6 +159,13 @@ conflicting user preference:
 
 - Unless the user states a different proficiency, assume the learner is at
   CEFR A (A1–A2) for Italian-learning notes. Keep prompts, explanations, and
+  examples appropriate to that basic-user range, and do not display the level
+  on the card unless the user explicitly asks for it.
+
+## Portuguese-learning card style
+
+- Unless the user states a different proficiency, assume the learner is at
+  CEFR A (A1–A2) for Portuguese-learning notes. Keep prompts, explanations, and
   examples appropriate to that basic-user range, and do not display the level
   on the card unless the user explicitly asks for it.
 

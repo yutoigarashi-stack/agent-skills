@@ -60,11 +60,12 @@ Use the official `td` CLI to find pending learning tasks and the bundled
    - Ask the user when a correction or intended meaning remains ambiguous.
 5. Inspect Anki using `anki-add-cards`.
    - Match the deck, note type, fields, HTML style, and tags of related cards.
-   - Use the standard `English` note type for self-authored English cards. Find
-     imported decks at runtime and do not use them as style references.
+   - Use the standard `English`, `Italian`, or `Portuguese` note type for
+     self-authored cards in the corresponding language. Find imported decks at
+     runtime and do not use them as style references.
    - Search every proposed primary field for duplicates.
    - Use `canAddNotes` before a batch insertion.
-   - Outside the standard English convention, do not hardcode a language,
+   - Outside these standard language conventions, do not hardcode a language,
      deck, note type, or field name.
 6. Apply and verify the reviewed changes.
    - Add new notes with duplicate prevention enabled.
