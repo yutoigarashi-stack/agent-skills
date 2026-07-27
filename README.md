@@ -8,6 +8,7 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 
 - `anki-add-cards`: AnkiConnectで既存構成とカードスタイルを確認し、標準英語ノートタイプへの追加・履歴を保った移行・更新・同期を行う
 - `reminders-to-anki`: `reminders-cli`の未完了項目をレビューし、学習用の内容をAnkiへ追加・同期してからReminderを完了する
+- `todoist-to-anki`: Todoist公式の`td` CLIでAnki関連プロジェクトの未完了タスクをレビューし、学習用の内容をAnkiへ追加・同期してからタスクを完了する
 
 ### git-workflows
 
@@ -40,5 +41,5 @@ Codex用manifestのversionはキャッシュ更新の判定に使われるため
 
 ## Security
 
-このリポジトリにはAnkiのカード内容、note ID、deck名、Reminderの内容、認証情報を保存しません。
-同梱するskillは、Anki、macOS Reminders、Gitリポジトリのデータをローカルで処理します。
+このリポジトリにはAnkiのカード内容、note ID、deck名、ReminderやTodoistタスクの内容、認証情報を保存しません。
+同梱するskillは、Anki、macOS Reminders、Todoist、Gitリポジトリのデータを実行時にのみ処理します。

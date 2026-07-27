@@ -8,7 +8,7 @@
     {
       "name": "anki-workflows",
       "source": "./plugins/anki-workflows",
-      "description": "Add, review, standardize, and migrate non-duplicate Anki cards directly or from macOS Reminders.",
+      "description": "Add, review, standardize, and migrate non-duplicate Anki cards directly or from Todoist and macOS Reminders.",
       "author": {
         "name": "yutoigarashi-stack"
       },
@@ -16,7 +16,8 @@
       "tags": [
         "anki",
         "ankiconnect",
-        "reminders"
+        "reminders",
+        "todoist"
       ]
     },
     {
