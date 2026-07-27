@@ -1,6 +1,6 @@
 {
   "name": "anki-workflows",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Add, review, standardize, and migrate non-duplicate Anki cards directly or from Todoist and macOS Reminders.",
   "author": {
     "name": "yutoigarashi-stack",
