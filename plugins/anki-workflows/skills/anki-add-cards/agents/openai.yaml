@@ -1,4 +1,4 @@
 interface:
   display_name: "Anki カード管理"
-  short_description: "標準EnglishタイプでAnkiカードを安全に追加・移行・更新"
-  default_prompt: "Use $anki-add-cards to add or migrate my self-authored English cards to the standard English note type without duplicates or lost review history."
+  short_description: "標準の英語・イタリア語・ポルトガル語タイプでAnkiカードを安全に管理"
+  default_prompt: "Use $anki-add-cards to add or migrate my self-authored English, Italian, or Portuguese cards to the standard note type without duplicates or lost review history."
