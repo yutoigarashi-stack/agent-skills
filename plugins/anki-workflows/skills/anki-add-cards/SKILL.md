@@ -169,6 +169,30 @@ conflicting user preference:
   examples appropriate to that basic-user range, and do not display the level
   on the card unless the user explicitly asks for it.
 
+## Disambiguate, consolidate, and split cards
+
+Apply these rules to self-authored language-learning notes in any language:
+
+- When several cards share nearly identical recall cues (for example,
+  Japanese translations that map to different target-language synonyms),
+  append a short first-letter hint such as `(a-)` to the end of each affected
+  `Prompt`. Take the letter from the core content word of the target, not
+  from a leading preposition or article: hint `in viaggio` as `(v-)` and
+  `sulla via del ritorno` as `(r-)`. Keep hints unique within each
+  confusable group.
+- Treat a confusability audit as read-only. Report the confusable groups and
+  add hints only when the user asks to apply them.
+- When the user asks to merge duplicate or overlapping notes, keep the note
+  with the most review history (compare `reps` and `interval` via
+  `cardsInfo`), absorb the unique explanations of the removed notes into the
+  surviving note's `Note` field, and delete only the notes the merge makes
+  redundant. Never discard a reviewed note in favor of an unreviewed one.
+- Keep one retrieval target per card. When a proposed card bundles several
+  parallel formulaic items (for example, three `avere + noun` expressions),
+  prefer one card per item and cross-reference the sibling expressions in
+  each `Note`. Bundling is acceptable only when the items form one fixed
+  sequence the user wants recalled together.
+
 ## Migrate existing English notes
 
 Migrate only when the user authorizes changing existing notes.
