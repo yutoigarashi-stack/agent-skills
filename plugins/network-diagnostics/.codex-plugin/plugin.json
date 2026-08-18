@@ -1,6 +1,6 @@
 {
   "name": "network-diagnostics",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260818114952",
   "description": "Safely measure and diagnose macOS home-network bottlenecks with repeatable JSON results.",
   "author": {
     "name": "yutoigarashi-stack",

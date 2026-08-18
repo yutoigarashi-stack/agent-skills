@@ -49,4 +49,4 @@ Codex用manifestのversionはキャッシュ更新の判定に使われるため
 
 このリポジトリにはAnkiのカード内容、note ID、deck名、ReminderやTodoistタスクの内容、認証情報、ネットワーク計測結果を保存しません。
 同梱するskillは、Anki、macOS Reminders、Todoist、Gitリポジトリ、ネットワーク情報を実行時にのみ処理します。
-ネットワーク診断はsudoを使わず、SSID、BSSID、MACアドレス、hostname、完全なグローバルIPv6アドレスを結果に保存しません。
+ネットワーク診断は全体をsudoやrootで実行せず、SSID、BSSID、MACアドレス、hostname、完全なグローバルIPv6アドレスを結果に保存しません。明示的に許可された場合だけ、macOSの管理者ダイアログ経由でAppleのwdutilから無線指標を取得できます。

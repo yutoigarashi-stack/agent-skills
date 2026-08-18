@@ -31,6 +31,7 @@ TOOLS = {
     "dig": "/usr/bin/dig",
     "network_quality": "/usr/bin/networkQuality",
     "system_profiler": "/usr/sbin/system_profiler",
+    "osascript": "/usr/bin/osascript",
 }
 PUBLIC_TARGETS = {"cloudflare": "1.1.1.1", "google": "8.8.8.8"}
 DNS_NAME = "example.com"
@@ -38,6 +39,9 @@ DOWNLOAD_HOST = "speed.cloudflare.com"
 DOWNLOAD_ENDPOINT = f"https://{DOWNLOAD_HOST}/__down"
 DEFAULT_DOWNLOAD_MB = 25
 PARALLEL_CONNECTIONS = 6
+PRIVILEGED_WIFI_APPLESCRIPT = (
+    'do shell script "/usr/bin/wdutil info" with administrator privileges'
+)
 
 
 def run_command(command: list[str], timeout: int = 30) -> dict[str, Any]:
@@ -108,7 +112,7 @@ def default_route(family: str) -> dict[str, Any]:
     }
 
 
-def collect_wifi(interface: str | None) -> dict[str, Any]:
+def collect_wifi(interface: str | None, allow_privileged: bool) -> dict[str, Any]:
     output: dict[str, Any] = {
         "interface": interface,
         "signal_dbm": None,
@@ -131,7 +135,7 @@ def collect_wifi(interface: str | None) -> dict[str, Any]:
         info = parent["spairport_current_network_information"] if parent else None
         if not isinstance(info, dict):
             output["error"] = "system_profiler did not expose current Wi-Fi metrics"
-            return output
+            info = {}
         output.update(
             {
                 "signal_dbm": number(info.get("spairport_network_signal")),
@@ -150,15 +154,53 @@ def collect_wifi(interface: str | None) -> dict[str, Any]:
         output["channel_width_mhz"] = int(width.group(1)) if width else None
         if output["signal_dbm"] is not None and output["noise_dbm"] is not None:
             output["snr_db"] = round(output["signal_dbm"] - output["noise_dbm"], 1)
-        missing = [
-            key
-            for key in ("signal_dbm", "noise_dbm", "link_speed_mbps", "standard", "channel")
-            if output[key] is None
-        ]
-        if missing:
-            output["error"] = "unavailable without privilege: " + ", ".join(missing)
     except (json.JSONDecodeError, KeyError, TypeError) as exc:
         output["error"] = f"system_profiler parse error: {exc}"
+
+    if allow_privileged and (output["signal_dbm"] is None or output["noise_dbm"] is None):
+        privileged = run_command(
+            [TOOLS["osascript"], "-e", PRIVILEGED_WIFI_APPLESCRIPT], timeout=120
+        )
+        if privileged["returncode"] == 0:
+            text = privileged["stdout"]
+            patterns = {
+                "signal_dbm": r"^\s*RSSI\s*:\s*(-?\d+(?:\.\d+)?)",
+                "noise_dbm": r"^\s*Noise\s*:\s*(-?\d+(?:\.\d+)?)",
+                "link_speed_mbps": r"^\s*Tx Rate\s*:\s*(\d+(?:\.\d+)?)",
+            }
+            for key, pattern in patterns.items():
+                match = re.search(pattern, text, re.MULTILINE | re.IGNORECASE)
+                if match:
+                    output[key] = float(match.group(1))
+            phy = re.search(r"^\s*PHY Mode\s*:\s*(\S+)", text, re.MULTILINE | re.IGNORECASE)
+            if phy:
+                mode = phy.group(1)
+                output["standard"] = f"802.{mode}" if mode.startswith("11") else mode
+            channel = re.search(
+                r"^\s*Channel\s*:\s*(\d)g(\d+)/(\d+)",
+                text,
+                re.MULTILINE | re.IGNORECASE,
+            )
+            if channel:
+                output["band"] = f"{channel.group(1)}GHz"
+                output["channel"] = int(channel.group(2))
+                output["channel_width_mhz"] = int(channel.group(3))
+            output["source"] = "system_profiler+privileged_wdutil"
+            output["error"] = None
+        else:
+            output["error"] = "privileged Wi-Fi metrics unavailable: " + (
+                error_text(privileged) or "authorization failed"
+            )
+
+    if output["signal_dbm"] is not None and output["noise_dbm"] is not None:
+        output["snr_db"] = round(output["signal_dbm"] - output["noise_dbm"], 1)
+    missing = [
+        key
+        for key in ("signal_dbm", "noise_dbm", "link_speed_mbps", "standard", "channel")
+        if output[key] is None
+    ]
+    if missing and output["error"] is None:
+        output["error"] = "unavailable via non-privileged system_profiler: " + ", ".join(missing)
     return output
 
 
@@ -486,6 +528,12 @@ def plan(args: argparse.Namespace) -> dict[str, Any]:
             else "Apple-selected networkQuality server",
         },
         "fixed_download_megabytes": fixed_mb,
+        "privileged_wifi": {
+            "enabled": args.allow_privileged_wifi,
+            "scope": "Apple wdutil info only via the macOS administrator dialog"
+            if args.allow_privileged_wifi
+            else "none",
+        },
         "network_quality_additional_traffic": "none"
         if args.skip_network_quality
         else "dynamic download and upload test traffic controlled by Apple",
@@ -524,6 +572,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dns-samples", type=int, default=5)
     parser.add_argument("--skip-throughput", action="store_true")
     parser.add_argument("--skip-network-quality", action="store_true")
+    parser.add_argument(
+        "--allow-privileged-wifi",
+        action="store_true",
+        help="open the macOS administrator dialog for wdutil radio metrics",
+    )
     args = parser.parse_args()
     if not 1 <= args.download_megabytes <= 100:
         parser.error("--download-megabytes must be between 1 and 100")
@@ -558,7 +611,7 @@ def main() -> int:
     interface = route4["interface"]
 
     print("Measuring Wi-Fi and IPv6...", flush=True)
-    wifi = collect_wifi(interface)
+    wifi = collect_wifi(interface, args.allow_privileged_wifi)
     ipv6 = collect_ipv6(interface, route6)
     print("Measuring latency and the first four route hops...", flush=True)
     latency = collect_latency(route4["gateway"], args.ping_count)
@@ -596,6 +649,7 @@ def main() -> int:
             "dns_samples": args.dns_samples,
             "throughput_enabled": not args.skip_throughput,
             "network_quality_enabled": not args.skip_network_quality,
+            "privileged_wifi_enabled": args.allow_privileged_wifi,
             "download_megabytes_each_mode": None
             if args.skip_throughput
             else args.download_megabytes,

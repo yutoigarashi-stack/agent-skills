@@ -11,7 +11,7 @@ inferences, and unverified possibilities separate throughout the diagnosis.
 ## Safety boundary
 
 - Use only the bundled scripts and macOS system commands they invoke.
-- Never run this workflow with `sudo` or as root. Do not install packages.
+- Never run the whole workflow with `sudo` or as root. Do not install packages.
 - Keep the fixed destinations: the detected router, `1.1.1.1`, `8.8.8.8`,
   `example.com`, Cloudflare's official download endpoint, and the server chosen
   by Apple's `networkQuality`.
@@ -19,8 +19,10 @@ inferences, and unverified possibilities separate throughout the diagnosis.
   generated test payloads only.
 - Do not add public-IP, ASN, or ISP-identification services without separate
   user consent.
-- Treat missing privileged Wi-Fi fields as unmeasured. Never elevate merely to
-  obtain RSSI or noise.
+- Treat missing privileged Wi-Fi fields as unmeasured by default. Only when the
+  user explicitly authorizes it, add `--allow-privileged-wifi`. This opens the
+  macOS administrator dialog and elevates only Apple's `wdutil info`; never
+  collect a password in chat or pipe one to a process.
 - Do not put secrets, addresses, account numbers, or an SSID in the label.
 
 ## Measure
@@ -40,6 +42,15 @@ inferences, and unverified possibilities separate throughout the diagnosis.
    ```bash
    python3 <skill-dir>/scripts/network_diagnostics.py <label> --run
    ```
+
+   When the user explicitly permits privileged Wi-Fi metrics, run:
+
+   ```bash
+   python3 <skill-dir>/scripts/network_diagnostics.py <label> --run --allow-privileged-wifi
+   ```
+
+   The administrator dialog must be completed on the Mac. The script parses
+   only radio metrics and discards SSID, BSSID, MAC, and other `wdutil` output.
 
 4. Keep the generated JSON in the current directory's `results/`. The script
    creates it with user-only permissions and does not store hostname, SSID,
