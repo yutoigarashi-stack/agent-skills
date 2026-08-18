@@ -14,6 +14,10 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 
 - `git-pull-with-stash`: ローカルの変更とステージ状態を保持したまま、現在のブランチをfast-forward-onlyで更新する
 
+### network-diagnostics
+
+- `diagnose-home-network`: macOSでWi-Fi、IPv6、遅延、経路、DNS、スループット、RPMを安全に測定し、ラベル付きJSONの前後比較から自宅回線のボトルネックを切り分ける
+
 ## Install
 
 ### Codex
@@ -22,6 +26,7 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 codex plugin marketplace add yutoigarashi-stack/agent-skills --ref main
 codex plugin add anki-workflows@yutoigarashi-skills
 codex plugin add git-workflows@yutoigarashi-skills
+codex plugin add network-diagnostics@yutoigarashi-skills
 ```
 
 ### Claude Code
@@ -30,6 +35,7 @@ codex plugin add git-workflows@yutoigarashi-skills
 claude plugin marketplace add yutoigarashi-stack/agent-skills
 claude plugin install anki-workflows@yutoigarashi-skills
 claude plugin install git-workflows@yutoigarashi-skills
+claude plugin install network-diagnostics@yutoigarashi-skills
 ```
 
 インストールまたは更新後は、新しいセッションでskillを利用してください。
@@ -41,5 +47,6 @@ Codex用manifestのversionはキャッシュ更新の判定に使われるため
 
 ## Security
 
-このリポジトリにはAnkiのカード内容、note ID、deck名、ReminderやTodoistタスクの内容、認証情報を保存しません。
-同梱するskillは、Anki、macOS Reminders、Todoist、Gitリポジトリのデータを実行時にのみ処理します。
+このリポジトリにはAnkiのカード内容、note ID、deck名、ReminderやTodoistタスクの内容、認証情報、ネットワーク計測結果を保存しません。
+同梱するskillは、Anki、macOS Reminders、Todoist、Gitリポジトリ、ネットワーク情報を実行時にのみ処理します。
+ネットワーク診断はsudoを使わず、SSID、BSSID、MACアドレス、hostname、完全なグローバルIPv6アドレスを結果に保存しません。

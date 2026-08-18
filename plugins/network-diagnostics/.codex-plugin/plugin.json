@@ -1,0 +1,37 @@
+{
+  "name": "network-diagnostics",
+  "version": "0.1.0",
+  "description": "Safely measure and diagnose macOS home-network bottlenecks with repeatable JSON results.",
+  "author": {
+    "name": "yutoigarashi-stack",
+    "url": "https://github.com/yutoigarashi-stack"
+  },
+  "homepage": "https://github.com/yutoigarashi-stack/agent-skills",
+  "repository": "https://github.com/yutoigarashi-stack/agent-skills",
+  "keywords": [
+    "network",
+    "wifi",
+    "ipv6",
+    "latency",
+    "bufferbloat",
+    "macos"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Network Diagnostics",
+    "shortDescription": "Measure and diagnose slow home Internet safely.",
+    "longDescription": "Run privacy-conscious macOS measurements for Wi-Fi, IPv6, latency, route hops, DNS, throughput, and responsiveness; compare labeled JSON results and separate evidence from unverified causes.",
+    "developerName": "yutoigarashi-stack",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/yutoigarashi-stack/agent-skills",
+    "defaultPrompt": [
+      "Measure my slow home Internet connection and identify the bottleneck from evidence.",
+      "Compare my before and after network measurements and rank effective fixes.",
+      "Check whether missing IPv6 or low RPM explains my poor network experience."
+    ]
+  }
+}
