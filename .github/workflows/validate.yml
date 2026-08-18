@@ -30,6 +30,7 @@ jobs:
           codex plugin marketplace add "$GITHUB_WORKSPACE"
           codex plugin add anki-workflows@yutoigarashi-skills
           codex plugin add git-workflows@yutoigarashi-skills
+          codex plugin add github-actions-workflows@yutoigarashi-skills
 
   claude-code:
     name: Claude Code

@@ -14,6 +14,10 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 
 - `git-pull-with-stash`: ローカルの変更とステージ状態を保持したまま、現在のブランチをfast-forward-onlyで更新する
 
+### github-actions-workflows
+
+- `optimize-github-actions`: リポジトリ横断でActions使用量を実測し、検証・キャッシュ・セキュリティ更新を維持したまま実行時間とコストを削減する
+
 ## Install
 
 ### Codex
@@ -22,6 +26,7 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 codex plugin marketplace add yutoigarashi-stack/agent-skills --ref main
 codex plugin add anki-workflows@yutoigarashi-skills
 codex plugin add git-workflows@yutoigarashi-skills
+codex plugin add github-actions-workflows@yutoigarashi-skills
 ```
 
 ### Claude Code
@@ -30,6 +35,7 @@ codex plugin add git-workflows@yutoigarashi-skills
 claude plugin marketplace add yutoigarashi-stack/agent-skills
 claude plugin install anki-workflows@yutoigarashi-skills
 claude plugin install git-workflows@yutoigarashi-skills
+claude plugin install github-actions-workflows@yutoigarashi-skills
 ```
 
 インストールまたは更新後は、新しいセッションでskillを利用してください。
