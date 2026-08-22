@@ -7,8 +7,8 @@ CodexとClaude Codeで共用するAgent Skillsのpublic marketplaceです。
 ### anki-workflows
 
 - `anki-add-cards`: AnkiConnectで既存構成とカードスタイルを確認し、標準英語ノートタイプへの追加・履歴を保った移行・更新・同期を行う
-- `reminders-to-anki`: `reminders-cli`の未完了項目をレビューし、学習用の内容をAnkiへ追加・同期してからReminderを完了する
-- `todoist-to-anki`: Todoist公式の`td` CLIでAnki関連プロジェクトの未完了タスクをレビューし、学習用の内容をAnkiへ追加・同期してからタスクを完了する
+- `reminders-to-anki`: `reminders-cli`の未完了項目から明確な外国語学習内容を抽出し、Ankiへ追加・同期してから処理済みReminderだけを完了する
+- `todoist-to-anki`: Todoist公式の`td` CLIでプロジェクトを限定せず未完了タスクをレビューし、明確な外国語学習内容をAnkiへ追加・同期してから処理済みタスクだけを完了する
 
 ### git-workflows
 
