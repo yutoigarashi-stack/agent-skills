@@ -1,4 +1,4 @@
 interface:
   display_name: "Todoist → Anki"
   short_description: "Todoistの学習タスクをレビューしてAnkiに追加"
-  default_prompt: "Use $todoist-to-anki to review pending learning tasks in my Todoist Anki project, add the right cards to Anki, sync, and complete the tasks."
+  default_prompt: "Use $todoist-to-anki to find clear language-learning content in my pending Todoist tasks, add the right cards to Anki, sync, and complete only the processed tasks."
