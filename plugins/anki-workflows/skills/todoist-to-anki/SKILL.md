@@ -1,6 +1,6 @@
 ---
 name: todoist-to-anki
-description: Review unfinished Todoist tasks with the official td CLI, identify clear foreign-language learning content regardless of project or explicit Anki labels, turn it into useful non-duplicate Anki cards, verify and sync Anki, and complete only successfully processed tasks. Use when the user asks to process, extract, register, or continue language-learning items from Todoist, including Inbox or mixed-purpose projects.
+description: Review unfinished Todoist tasks with the official td CLI, identify clear foreign-language learning content regardless of project or explicit Anki labels, turn it into useful non-duplicate Anki cards, verify and sync Anki, and delete only successfully processed source tasks. Use when the user asks to process, extract, register, or continue language-learning items from Todoist, including Inbox or mixed-purpose projects.
 ---
 
 # Process Todoist tasks into Anki
@@ -87,28 +87,33 @@ Use the official `td` CLI to find pending learning tasks and the bundled
    - Call the AnkiConnect `sync` action and require a null error.
    - Do not sync when every intended card was already present and no note
      changed.
-8. Complete the exact Todoist task only after all intended cards are accounted
-   for, all writes are verified, and any required sync succeeds.
+8. Delete the exact Todoist source task only after all intended cards are
+   accounted for, all writes are verified, and any required sync succeeds.
+   - This workflow intentionally deletes successfully processed source tasks
+     instead of completing them. Treat an explicit invocation of this skill as
+     authorization to delete those tasks. When the skill was selected
+     implicitly, obtain explicit deletion permission immediately before the
+     mutation.
    - Use `id:<task-id>`, preview with `--dry-run` when supported, then run
-     `td task complete "id:<task-id>"`. Add `--json` only when the installed
+     `td task delete "id:<task-id>" --yes`. Add `--json` only when the installed
      command's help reports that it is supported.
-   - Do not automatically complete recurring tasks. Explain that normal
-     completion advances the recurrence and `--forever` stops it, then obtain
+   - Do not automatically delete recurring tasks because deletion removes the
+     recurrence rather than advancing it. Explain the effect and obtain
      explicit direction.
    - If the user declines full-profile sync after a write, leave the task
-     unfinished unless the user explicitly accepts local-only completion.
-9. List the source scope's unfinished tasks again and verify that each
-   completed task ID is absent.
+     undeleted unless the user explicitly accepts local-only deletion.
+9. List the source scope's unfinished tasks again and verify that each deleted
+   task ID is absent.
 
 ## Failure handling
 
-- Keep the Todoist task unfinished when review, Anki mutation, verification,
-  required sync, or task completion fails.
+- Keep the Todoist task undeleted when review, Anki mutation, verification,
+  required sync, or task deletion fails.
 - On a partial Anki batch, report the successful note IDs. On retry, detect
   those notes as duplicates instead of adding them again.
-- If task completion succeeds but final listing cannot be verified, report the
-  completion response and the verification failure separately.
-- Never delete a task as a substitute for completing it.
+- If task deletion succeeds but final listing cannot be verified, report the
+  deletion response and the verification failure separately.
+- Never complete a task as a substitute for deleting it.
 
 ## Report
 
@@ -120,4 +125,4 @@ Report:
 - the deck and note type;
 - the note IDs;
 - sync status;
-- Todoist task completion and verification status.
+- Todoist task deletion and verification status.
