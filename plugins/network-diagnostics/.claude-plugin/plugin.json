@@ -1,0 +1,17 @@
+{
+  "name": "network-diagnostics",
+  "description": "Safely measure and diagnose macOS home-network bottlenecks with repeatable JSON results.",
+  "author": {
+    "name": "yutoigarashi-stack"
+  },
+  "homepage": "https://github.com/yutoigarashi-stack/agent-skills",
+  "repository": "https://github.com/yutoigarashi-stack/agent-skills",
+  "keywords": [
+    "network",
+    "wifi",
+    "ipv6",
+    "latency",
+    "bufferbloat",
+    "macos"
+  ]
+}

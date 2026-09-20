@@ -33,6 +33,22 @@
         "stash",
         "pull"
       ]
+    },
+    {
+      "name": "network-diagnostics",
+      "source": "./plugins/network-diagnostics",
+      "description": "Safely measure and diagnose macOS home-network bottlenecks with repeatable JSON results.",
+      "author": {
+        "name": "yutoigarashi-stack"
+      },
+      "category": "Developer Tools",
+      "tags": [
+        "network",
+        "wifi",
+        "ipv6",
+        "bufferbloat",
+        "macos"
+      ]
     }
   ]
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Home Network Diagnostics"
+  short_description: "Measure and diagnose slow home internet safely."
+  default_prompt: "Use $diagnose-home-network to measure my connection safely and identify the bottleneck."
