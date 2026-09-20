@@ -33,6 +33,21 @@
         "stash",
         "pull"
       ]
+    },
+    {
+      "name": "github-actions-workflows",
+      "source": "./plugins/github-actions-workflows",
+      "description": "Audit and safely reduce GitHub Actions usage across repositories.",
+      "author": {
+        "name": "yutoigarashi-stack"
+      },
+      "category": "Developer Tools",
+      "tags": [
+        "github-actions",
+        "ci",
+        "billing",
+        "optimization"
+      ]
     }
   ]
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Actions 最適化"
+  short_description: "実測データからActionsの時間とコストを安全に削減"
+  default_prompt: "Use $optimize-github-actions to audit my repositories and safely reduce GitHub Actions usage."
